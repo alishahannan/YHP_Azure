@@ -17,9 +17,10 @@ To edit the files with local IDE:
 4. Click Clone.
 5. Follow Sign In prompts.
 6. Select YHP_AZURE as the repository.
-7. Chose your perfered parent directory.
+7. Chose your preferred parent directory.
 8. Click Clone.
 
-You should now have the Azure DevOps files avalable to edit on your local machine.
+You should now have the Azure DevOps files available to edit on your local machine.
 
-### To Run Program
+### To Run Program In Azure DevOps:
+Navigate to Pipelines and Run the Youth Homelessness Project-Maven-CI pipeline.
