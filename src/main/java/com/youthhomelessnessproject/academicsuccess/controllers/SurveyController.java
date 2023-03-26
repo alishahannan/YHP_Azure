@@ -7,7 +7,6 @@ import com.youthhomelessnessproject.academicsuccess.models.*;
 import com.youthhomelessnessproject.academicsuccess.services.QuestionService;
 import com.youthhomelessnessproject.academicsuccess.services.ResourceService;
 import com.youthhomelessnessproject.academicsuccess.services.SessionService;
-import com.youthhomelessnessproject.academicsuccess.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -24,26 +22,21 @@ public class SurveyController {
 
     // Runtime injection of QuestionService and SessionService dependencies
     private QuestionService questionService;
-
     @Autowired
     private SessionService sessionService;
-
     @Autowired
     private ResourceService resourceService;
-    
 
     public SurveyController(QuestionService questionService) {
         super();
         this.questionService = questionService;
     }
-
     // TODO MAKE THIS HAPPEN!!!
     @GetMapping("/survey")
     @ResponseBody
     public ModelAndView showSurvey(@RequestParam String zipcode) {
         AnswersDTO answersDto = new AnswersDTO();
 
-       
         ModelAndView mav = new ModelAndView("survey");
 
         List<Question> questions = questionService.getAllQuestions();
@@ -72,9 +65,6 @@ public class SurveyController {
 
         return mav;
     }
-    
-    
-
     @PostMapping("/survey/submit")
     public String validateSurvey(@ModelAttribute AnswersDTO answersDto, Model model) {
 
@@ -101,9 +91,8 @@ public class SurveyController {
         existingSession.setEnd_time(new Timestamp(System.currentTimeMillis()));
 
         // Calculate food, housing and dependent scores from survey responses
-        for(int i = 0; i< questions.size(); i++) {
-
-            if(questions.get(i).getFoodResource()) {
+        for (int i = 0; i < questions.size(); i++) {
+            if (questions.get(i).getFoodResource()) {
 
                 optionIndex = submittedAnswers[i];
                 responseText = questions.get(i).getOptions().get(optionIndex).getOptionTitle();
@@ -118,7 +107,6 @@ public class SurveyController {
                 // NOTE: THIS ASSUMES THAT OPTION VALUE 1 IS MAX VALUE
                 // TODO Create logic to determine highest value of all options?
                 totalPossibleFoodScore += questions.get(i).getOptions().get(0).getValue();
-
             }
 
             if (questions.get(i).getHousingResource()) {
@@ -146,11 +134,8 @@ public class SurveyController {
                 System.out.println("Question " + (i + i) + " response = " + responseText + " && value = " + responseValue + ". Added to dependentScore");
 
                 dependentScore += responseValue;
-
             }
-
         }
-        
 
         // Round scores up for better resource coverage
         foodScore = Math.ceil(foodScore);
@@ -166,13 +151,31 @@ public class SurveyController {
         existingSession.setDependentScore(dependentScore);
         System.out.println("Final Dependent score: " + dependentScore);
 
-        // Retrieve resources for each category based on scores;
-        List<Resource> foodResources = Utils.getSurveyResources(1, foodScore);
-        List<Resource> housingResources = Utils.getSurveyResources(2, housingScore);
-        List<Resource> dependentResources = Utils.getSurveyResources(3, dependentScore);
-
-        // Compile all do list
+        // Compile lists
         List<Resource> allResources = new ArrayList<>();
+
+        // Retrieve resources for each category based on scores;
+        List<Resource> foodResources = new ArrayList<>();
+        for (Resource resource : resourceService.getAllFoodResourcesWithDegreeLessEqual(foodScore)) {
+            if ((resource.getAddress().getZip().equals(existingSession.getZipCode()))) {
+                foodResources.add(resource);
+            }
+        }
+
+        List<Resource> housingResources = new ArrayList<>();
+        for (Resource resource : resourceService.getAllHousingResourcesWithDegreeLessEqual(housingScore)) {
+            if ((resource.getAddress().getZip()).equals(existingSession.getZipCode())) {
+                housingResources.add(resource);
+            }
+        }
+
+        List<Resource> dependentResources = new ArrayList<>();
+        for (Resource resource : resourceService.getAllDependentResourcesWithDegreeLessEqual(dependentScore)) {
+            if ((resource.getAddress().getZip()).equals(existingSession.getZipCode())) {
+                dependentResources.add(resource);
+            }
+        }
+
         allResources.addAll(foodResources);
         allResources.addAll(housingResources);
         allResources.addAll(dependentResources);
@@ -198,7 +201,5 @@ public class SurveyController {
         sessionService.saveSession(existingSession);
 
         return "survey-results";
-
     }
-
 }
