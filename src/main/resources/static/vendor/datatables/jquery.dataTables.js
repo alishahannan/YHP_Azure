@@ -4066,7 +4066,7 @@
 			}
 		};
 	
-		for ( i=0 ; i<columnCount ; i++ ) {
+		for ( i=0 ; i<columnCount-1 ; i++ ) {
 			column = columns[i];
 			columnSearch = preColSearch[i];
 			dataProp = typeof column.mData=="function" ? 'function' : column.mData ;
