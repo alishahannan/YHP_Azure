@@ -12,7 +12,7 @@ To edit the files with local IDE:
 
 ### IntelliJ IDEA
 1. Install the Azure DevOps plugin.
-2. CLick the Get From VCS button.
+2. Click the "Get From VCS" button.
 3. Select "Azure DevOps Git" for Version control.
 4. Click Clone.
 5. Follow Sign In prompts.
