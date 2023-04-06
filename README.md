@@ -24,7 +24,10 @@ You should now have the Azure DevOps files available to edit on your local machi
 
 #### Database Connection
 URL: jdbc:mysql://studentsuccess.mysql.database.azure.com:3306?serverTimezone=UTC&useSSL=true&requireSSL=false
+
+### Database Login
 User: test
+
 Password: rFhuj3849fsd
 
 ### To Run Program In Azure DevOps:
