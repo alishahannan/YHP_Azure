@@ -217,15 +217,16 @@
                                 <tbody>
                                 <tr th:each="resource : ${allResources}">
 
-                                    <td th:text="${resource.name}"></td>
+                                    <td th:href="@{/employee/resources/{id}(id=${resource.id})}"
+                                           class="btn btn-primary" text="${resource.name}"></td>
                                     <td th:text="${resource.address.street}"></td>
                                     <td th:text="${resource.description}"></td>
                                     <td th:text="${resource.foodResource}"></td>
                                     <td th:text="${resource.housingResource}"></td>
                                     <td th:text="${resource.dependentResource}"></td>
                                     <td>
-                                        <a th:href="@{/employee/resources/{id}(id=${resource.id})}"
-                                           class="btn btn-primary">Details</a>
+                                       <! <a th:href="@{/employee/resources/{id}(id=${resource.id})}"
+                                           class="btn btn-primary">Details</a>>
 
                                         <a th:href="@{/employee/resources/{id}/edit(id=${resource.id})}"
                                            class="btn btn-outline-primary">Edit</a>
