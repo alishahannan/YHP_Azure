@@ -4031,7 +4031,7 @@
 	{
 		var
 			columns = settings.aoColumns,
-			columnCount = columns.length,
+			columnCount = columns.length-1,
 			features = settings.oFeatures,
 			preSearch = settings.oPreviousSearch,
 			preColSearch = settings.aoPreSearchCols,
@@ -5570,7 +5570,7 @@
 			scrollY = scroll.sY,
 			scrollX = scroll.sX,
 			scrollXInner = scroll.sXInner,
-			columnCount = columns.length,
+			columnCount = columns.length-1,
 			visibleColumns = _fnGetColumns( oSettings, 'bVisible' ),
 			headerCells = $('th', oSettings.nTHead),
 			tableWidthAttr = table.getAttribute('width'), // from DOM element
