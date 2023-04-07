@@ -302,9 +302,9 @@ TODO: Add custom script to all dataTables to disable sorting of Modify column (w
 <script>
     $(document).ready(function(){
         $("#dataTable").DataTable({
-            'aoColumnDefs':[{
-                'Searchable':false,
-                'Targets':[6]
+            "columnDefs":[{
+                "searchable":false,
+                "targets":[6]
             }]
         });
     })
