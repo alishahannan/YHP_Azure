@@ -209,26 +209,21 @@
                                     <th>Food</th>
                                     <th>Housing</th>
                                     <th>Dependent</th>
-                                    <!--<th>Details</th>-->
+                                    <th>Details</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="resource : ${resources}">
 
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm" th:text="${resource.name}" th:onclick="'window.location.href = \'/resources/details/\' + ${resource.id}'">
-                                                <!-- Display the resource name as the button text and add an onclick event to redirect to the details page with the resource id -->
-                                        </button>
-                                       <!--<a th:href="@{/resource/{id}(id=${resource.id})}" text="${resource.name}" class="btn btn-info"></a>-->
-                                    </td>
+                                    <td th:text="${resource.name}"></td>
                                     <td th:text="${resource.description}"></td>
                                     <td th:text="${resource.address.street + '  ' + resource.address.city + ', ' + resource.address.state + ' ' + resource.address.zip}" style="white-space: pre-line"></td>
                                     <td th:text="${resource.foodResource}"></td>
                                     <td th:text="${resource.housingResource}"></td>
                                     <td th:text="${resource.dependentResource}"></td>
-                                    <!--<td>
+                                    <td>
                                         <a th:href="@{/resource/{id}(id=${resource.id})}" class="btn btn-info">Details</a>>
-                                    </td>-->
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
