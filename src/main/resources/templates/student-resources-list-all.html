@@ -297,18 +297,19 @@ TODO: Add custom script to all dataTables to disable sorting of Modify column (w
 <!-- -->
 
 <!-- Page level plugins -->
-<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#dataTable").DataTable({
-            "columnDefs":[{
-                "searchable":false,
-                "targets":[0]
+            'columnDefs':[{
+                'targets':[6],
+                'searchable':false
             }]
         });
     })
 </script>
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
 
 <!-- Page level custom scripts -->
 <script src="/js/demo/datatables-demo.js"></script>
