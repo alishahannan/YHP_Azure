@@ -11,45 +11,30 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter{
-	
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		
+
 		auth.inMemoryAuthentication()
 			.passwordEncoder(passwordEncoder())
 			.withUser("user")
 			.password(passwordEncoder().encode("valencia"))
 			.roles("User");
-		
-		
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		
+
 		http
 			.csrf().disable()
 			.authorizeRequests()
 			.anyRequest()
 			.permitAll();
-			
-			
-		
-	
-		
 	}
-	
-	
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		
+
 		return new BCryptPasswordEncoder();
 	}
-	
-	
-	
-	
-
 }

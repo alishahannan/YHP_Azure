@@ -50,9 +50,7 @@ public class ZipCodeController {
 
 			if(fourth > 5) {
 				return false;
-			} else if (fourth == 5 && fifth != 0) {
-				return false;
-			}
+			} else return fourth != 5 || fifth == 0;
 		}
 		return true;
 	}

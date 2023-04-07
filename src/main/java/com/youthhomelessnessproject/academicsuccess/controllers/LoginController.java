@@ -8,11 +8,8 @@ import com.youthhomelessnessproject.academicsuccess.repositories.AdminRepository
 import com.youthhomelessnessproject.academicsuccess.repositories.EmployeeRepository;
 import com.youthhomelessnessproject.academicsuccess.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +28,7 @@ public class LoginController {
 	private EmployeeRepository employeeRepository;
 
 	@Autowired
-	private PasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();;
+	private PasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
 
 	@GetMapping("/admin")
 	public String showAdminLoginForm(Model model) {
