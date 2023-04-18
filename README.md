@@ -36,14 +36,15 @@ Navigate to Pipelines and Run the Youth Homelessness Project-Maven-CI pipeline.
 ### Website Test Users:
 # Student Account
 Username: student
-Password: student
+
+Password: student 
 
 # Employee Account
-Username: testEmp
+Username: testEmp 
+
 Password: employee
 
 # Admin Account
 Username: testAdmin
+
 Password: admin
-
-
