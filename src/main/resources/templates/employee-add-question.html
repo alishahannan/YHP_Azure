@@ -57,7 +57,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="/employee/dashboard">
+            <a class="nav-link" th:href="@{/employee/dashboard}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -96,13 +96,13 @@
 
         <li class="nav-item active">
             <a class="nav-link"
-               href="/employee/questions/new"
+               th:href="@{/employee/questions/new}"
             >
                 <i class="fas fa-fw fa-plus"></i>
                 <span>Add New Questions</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/employee/questions">
+            <a class="nav-link" th:href="@{/employee/questions}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>List All Questions</span></a>
         </li>
