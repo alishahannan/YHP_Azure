@@ -216,18 +216,16 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="resource : ${allResources}">
-
-                                    <td th:href="@{/employee/resources/{id}(id=${resource.id})}"
-                                           class="btn btn-primary" text="${resource.name}"></td>
+                                    <td>
+                                        <a th:href="@{/employee/resources/{id}(id=${resource.id})}"
+                                           th:text="${resource.name}"></a>
+                                    </td>
                                     <td th:text="${resource.address.street}"></td>
                                     <td th:text="${resource.description}"></td>
                                     <td th:text="${resource.foodResource}"></td>
                                     <td th:text="${resource.housingResource}"></td>
                                     <td th:text="${resource.dependentResource}"></td>
                                     <td>
-                                       <! <a th:href="@{/employee/resources/{id}(id=${resource.id})}"
-                                           class="btn btn-primary">Details</a>>
-
                                         <a th:href="@{/employee/resources/{id}/edit(id=${resource.id})}"
                                            class="btn btn-outline-primary">Edit</a>
 
@@ -305,16 +303,6 @@
 <script src="/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script>
-    $(document).ready(function(){
-        $("#dataTable").DataTable({
-            'columnDefs':[{
-                'targets':[6],
-                'searchable':false
-            }]
-        });
-    })
-</script>
 <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
